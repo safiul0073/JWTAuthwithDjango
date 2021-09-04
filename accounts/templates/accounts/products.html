@@ -1,5 +1,38 @@
 {% extends 'main/dashboard.html' %}
 
 {% block content%}
-<h1> this is product </h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-10 mx-auto">
+                <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">description</th>
+      <th scope="col">size</th>
+      <th scope="col">category</th>
+      <th scope="col">action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in products %}
+  
+    <tr>
+      <th scope="row">{{product.name}}</th>
+      <td>{{product.description}}</td>
+      <td>{{product.size}}</td>
+      <td>{{product.category}}</td>
+      <td>
+        <a class="btn btn-sm btn-success" href="">edit</a>
+        <a class="btn btn-sm btn-danger" href="">delete</a>
+      </td>
+    </tr>
+    
+    {% endfor %}
+  </tbody>
+</table>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,18 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import *
 # Create your views here.
 
 def home(request):
-    return render(request, 'main/dashboard.html')
+    return render(request, 'accounts/home.html')
 
 def login(request):
-    return HttpResponse("login")
+    return render(request, "accounts/login.html")
 
 def register(request):
-    return HttpResponse("register")
+    return render(request, "accounts/register.html")
 
 def product(request):
-    return HttpResponse("product")
+    products = Product.objects.all()
+    return render(request, "accounts/products.html", {'products': products})
 
 def category(request):
-    return HttpResponse("category")
+    return render(request, "accounts/category.html")
