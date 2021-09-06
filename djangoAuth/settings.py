@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'apiAuth',
     'rest_framework',
+    'knox',
     'message',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -78,12 +81,14 @@ WSGI_APPLICATION = 'djangoAuth.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'djauth',
+        'USER': 'postgres',
+        'PASSWORD': 'anis',
         'HOST': 'localhost',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': ''
+        'PORT': '5050',
+
     }
 }
 
@@ -138,6 +143,10 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
 }
+
